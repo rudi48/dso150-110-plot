@@ -2,7 +2,7 @@
 """
 # DSO150-110-plot.py - capture DSO150 data and plot
 # 2017-11-27 Rudolf Reuter, version 1.0, Python 2/3
-# 2017-11-05 Rudolf Reuter, version 1.1
+# 2017-12-05 Rudolf Reuter, version 1.1
 # waveform data are just time resolution (s) and 12 bit data (1024)
 # firmware 110 and newer
 #
