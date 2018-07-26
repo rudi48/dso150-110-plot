@@ -3,6 +3,7 @@
 # DSO150-110-plot.py - capture DSO150 data and plot
 # 2017-11-27 Rudolf Reuter, version 1.0, Python 2/3
 # 2017-12-05 Rudolf Reuter, version 1.1
+# 2018-07-20 Rudolf Reuter, version 1.2, Py2:sampleIntvl = tNum / float(tFactor)
 # waveform data are just time resolution (s) and 12 bit data (1024)
 # firmware 110 and newer
 #
@@ -45,8 +46,8 @@ if os_name == "Darwin": # Mac OS X
 
 
 parser = optparse.OptionParser(
-    usage = "%prog [options] [port [baudrate]] version 1.1", 
-    description = "DSO150_p23.py - capture DSO150 data."
+    usage = "%prog [options] [port [baudrate]] version 1.2", 
+    description = "DSO150-110-plot.py - capture DSO150 data."
 )
 parser.add_option("-d", "--data", dest="data", action="store_true",
                   help="data plot")
@@ -83,6 +84,7 @@ if options.printWS:
             print(ser.name)
         ser.flushInput()
         #time.sleep(2)  # skip Arduino DTR toogle RESET
+        print("For DSO150 firmware 111 and newer ONLY")
     except:
         sys.stderr.write("could not open port %r\n" % (port))
         if os_name == "Darwin": # Mac OS X
@@ -157,7 +159,7 @@ if options.printWS:  # Python 2/3 OK
     tUnit = tUnit.rstrip('\r\n')
     if tUnit in timeFactor:
         tFactor = timeFactor[tUnit]
-        sampleIntvl = tNum / tFactor
+        sampleIntvl = tNum / float(tFactor) # float() for Python 2
     else:
         print("Error time unit " + tUnit)
         sys.exit(1)
