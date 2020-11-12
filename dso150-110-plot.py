@@ -195,7 +195,7 @@ if options.data:  # Python 2/3 OK
     if os_name == "Linux":
         f.write('set terminal qt size 1200,675 font "Helvetica,12"'  + "\n") 
     if os_name == "Windows":
-        f.write('set terminal qt size 1200,675'  + "\n") # ratio: 16:9 
+        f.write('set terminal wxt size 1200,675'  + "\n") # ratio: 16:9 
     f.write('set datafile separator ","' + "\n")
     # get data title
     fd = open(fname)
